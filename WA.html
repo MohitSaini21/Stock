@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working_Area</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+          rel="stylesheet"
+        />
+
+        <title>Stock Market</title>
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"
+        ></script>
+
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            font-family: "Inter", sans-serif;
+          }
+          .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+          }
+
+          .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 550px;
+            width: 100%;
+            background: white;
+          }
+
+          .formbold-steps {
+            padding-bottom: 18px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #dde3ec;
+          }
+          .formbold-steps ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            gap: 40px;
+          }
+          .formbold-steps li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+          }
+          .formbold-steps li span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dde3ec;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+          }
+          .formbold-steps li.active {
+            color: #07074d;
+          }
+          .formbold-steps li.active span {
+            background: #6a64f1;
+            color: #ffffff;
+          }
+
+          .formbold-input-flex {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 22px;
+          }
+          .formbold-input-flex > div {
+            width: 50%;
+          }
+          .formbold-form-input {
+            width: 100%;
+            padding: 13px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+          }
+          .formbold-form-input:focus {
+            border-color: #6a64f1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+          }
+          .formbold-form-label {
+            color: #07074d;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 24px;
+            display: block;
+            margin-bottom: 10px;
+          }
+
+          .formbold-form-confirm {
+            border-bottom: 1px solid #dde3ec;
+            padding-bottom: 35px;
+          }
+          .formbold-form-confirm p {
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+            margin-bottom: 22px;
+            width: 75%;
+          }
+          .formbold-form-confirm > div {
+            display: flex;
+            gap: 15px;
+          }
+
+          .formbold-confirm-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffffff;
+            border: 0.5px solid #dde3ec;
+            border-radius: 5px;
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+          }
+          .formbold-confirm-btn {
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+          }
+          .formbold-confirm-btn.active {
+            background: #6a64f1;
+            color: #ffffff;
+          }
+
+          .formbold-form-step-1,
+          .formbold-form-step-2,
+          .formbold-form-step-3 {
+            display: none;
+          }
+          .formbold-form-step-1.active,
+          .formbold-form-step-2.active,
+          .formbold-form-step-3.active {
+            display: block;
+          }
+
+          .formbold-form-btn-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 25px;
+            margin-top: 25px;
+          }
+          .formbold-back-btn {
+            cursor: pointer;
+            background: #ffffff;
+            border: none;
+            color: #07074d;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            display: none;
+          }
+          .formbold-back-btn.active {
+            display: block;
+          }
+          .formbold-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px 25px;
+            border: none;
+            font-weight: 500;
+            background-color: #6a64f1;
+            color: white;
+            cursor: pointer;
+          }
+          .formbold-btn:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+          }
+        </style>
+        <style>
+          .responsive-text {
+            font-size: 4vw; /* 4% of the viewport width, can adjust based on needs */
+          }
+
+          /* For smaller screens like mobile devices */
+          @media (max-width: 768px) {
+            .responsive-text {
+              font-size: 6vw; /* Make the font larger on smaller screens */
+            }
+          }
+
+          /* For larger screens */
+          @media (min-width: 1200px) {
+            .responsive-text {
+              font-size: 2rem; /* Default font size for larger screens */
+            }
+          }
+          .trash-icon {
+            color: red;
+            cursor: pointer;
+          }
+        </style>
+        <!-- table css -->
+        <style>
+          /* General styles */
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+          select {
+            border: 2px dashed black;
+            border-radius: 5%;
+          }
+          table,
+          th,
+          td {
+            border: 1px solid black;
+          }
+          th,
+          td {
+            padding: 10px;
+            text-align: center;
+          }
+          #tableInput {
+            width: 100%;
+            padding: 5px;
+          }
+
+          .button-container {
+            margin-top: 20px;
+          }
+
+          select {
+            width: 100%;
+            padding: 5px;
+          }
+
+          /* Make the table horizontally scrollable on small screens (phones) */
+          @media (max-width: 768px) {
+            .table-wrapper {
+              overflow-x: auto; /* Allow horizontal scrolling */
+              -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            }
+
+            table {
+              width: 100%;
+              display: block; /* Make the table block-level for scrolling */
+              overflow-x: auto;
+              white-space: nowrap; /* Prevent wrapping of table content */
+            }
+
+            th,
+            td {
+              display: inline-block;
+              width: auto;
+              min-width: 120px; /* Minimum width for each column */
+            }
+
+            input,
+            select {
+              min-width: 100px; /* Ensure inputs are not too small on mobile */
+            }
+          }
+          .dragging {
+            opacity: 0.95; /* Slightly transparent for sophistication */
+            transform: scale(
+              1.02
+            ); /* Small scale increase to give it a lifted, formal feel */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+              0 2px 8px rgba(0, 0, 0, 0.1); /* Soft and formal shadow */
+            transition: transform 0.3s ease, opacity 0.2s ease,
+              box-shadow 0.3s ease; /* Smooth, professional transition */
+            z-index: 9999; /* Keeps it on top of everything else */
+            border-radius: 8px; /* Subtle rounded corners for a clean and formal appearance */
+            background-color: #f8f9fa; /* Light, professional background */
+
+            cursor: grabbing; /* Formal dragging cursor */
+            box-sizing: border-box; /* Ensures border does not distort the size */
+          }
+
+          .card {
+            border: 3px dashed black;
+          }
+
+          .veryFirstTable {
+            border: 5px solid #6a64f1;
+          }
+        </style>
+        <style>
+          /* Base styling for cards */
+          .todayCard {
+            opacity: 0; /* Start as invisible */
+            transform: translateY(10px); /* Start slightly below */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for opacity and position */
+          }
+
+          /* Class for animating cards on append */
+          .todayCard.animateIn {
+            opacity: 1; /* Fade in */
+            transform: translateY(0); /* Move to normal position */
+          }
+
+          /* Optional: a subtle box-shadow for a more refined, formal touch */
+          .todayCard.animateIn {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Elegant shadow effect */
+          }
+        </style>
+        <!--  table css-->
+      </head>
+      <body>
+        <nav class="navbar bg-body-tertiary fixed-top">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"
+              >Stock Market Tables Manipulation</a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="offcanvas offcanvas-end"
+              tabindex="-1"
+              id="offcanvasNavbar"
+              aria-labelledby="offcanvasNavbarLabel"
+            >
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Stock</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      aria-current="page"
+                      href="/Home.html"
+                      >Home</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/WA.html">Working Area</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <br />
+        <br />
+        <br />
+
+        <!-- Adding the form -->
+        <div class="formbold-main-wrapper">
+          <div class="formbold-form-wrapper">
+            <form id="multiStepForm">
+              <div class="formbold-steps">
+                <ul>
+                  <li class="formbold-step-menu1 active">
+                    <span>1</span>
+                    Table Name
+                  </li>
+                  <li class="formbold-step-menu2">
+                    <span>2</span>
+                    Rows and Columns
+                  </li>
+                  <li class="formbold-step-menu3">
+                    <span>3</span>
+                    Confirm
+                  </li>
+                </ul>
+              </div>
+
+              <div class="formbold-form-step-1 active">
+                <div class="formbold-input-flex">
+                  <div>
+                    <label for="tableName" class="formbold-form-label">
+                      Table Name
+                    </label>
+                    <input
+                      type="text"
+                      name="tableName"
+                      placeholder="Enter Table Name"
+                      id="tableName"
+                      class="formbold-form-input"
+                    />
+                  </div>
+                  <div>
+                    <label for="currentDate" class="formbold-form-label">
+                      Current Date (Optional)
+                    </label>
+                    <input type="date" name="currentDate" id="currentDate"
+                    class="formbold-form-input" value="" ' />
+                  </div>
+                </div>
+              </div>
+
+              <div class="formbold-form-step-2">
+                <div>
+                  <label for="numRows" class="formbold-form-label"
+                    >Number of Rows</label
+                  >
+                  <input
+                    type="number"
+                    name="numRows"
+                    id="numRows"
+                    class="formbold-form-input"
+                    placeholder="Enter Number of Rows"
+                  />
+                </div>
+                <div>
+                  <label for="numColumns" class="formbold-form-label"
+                    >Number of Columns</label
+                  >
+                  <input
+                    type="number"
+                    name="numColumns"
+                    id="numColumns"
+                    class="formbold-form-input"
+                    placeholder="Enter Number of Columns"
+                  />
+                </div>
+              </div>
+
+              <div class="formbold-form-step-3">
+                <div class="formbold-form-confirm">
+                  <p>Do you want to create the table with the above details?</p>
+
+                  <div>
+                    <button
+                      type="button"
+                      class="formbold-confirm-btn active"
+                      id="confirmBtn"
+                    >
+                      Yes! I want it.
+                    </button>
+
+                    <button
+                      type="button"
+                      class="formbold-confirm-btn"
+                      id="denyBtn"
+                    >
+                      No! I don’t want it.
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="formbold-form-btn-wrapper">
+                <button type="button" class="formbold-back-btn" id="backBtn">
+                  Back
+                </button>
+
+                <button type="button" class="formbold-btn" id="nextBtn">
+                  Next Step
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_1675_1807)">
+                      <path
+                        d="M10.7814 7.33312L7.20541 3.75712L8.14808 2.81445L13.3334 7.99979L8.14808 13.1851L7.20541 12.2425L10.7814 8.66645H2.66675V7.33312H10.7814Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1675_1807">
+                        <rect width="16" height="16" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Adding the form -->
+
+        <!-- Working Area -->
+        <div class="container" id="workingArea">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button
+              class="btn btn-primary me-md-2"
+              type="button"
+              id="btn1"
+              onclick="addColumn()"
+              if
+            >
+              Add Column
+            </button>
+            <button
+              class="btn btn-primary"
+              id="btn2"
+              type="button"
+              onclick="addRow()"
+            >
+              Add row
+            </button>
+          </div>
+          <br />
+          <span id="label">Table ID: _________</span>
+          <span id="uniqueID"></span>
+          <br /><br />
+          <h3 id="currTableName"></h3>
+
+          <div class="table-wrapper">
+            <table id="dynamicTable" class="parent"></table>
+          </div>
+        </div>
+
+        <!-- Working Area -->
+        <br /><br /><br />
+        <div class="container">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+              <h5 id="garrageHeading">Tabular Garrage</h5>
+              <br />
+              <div id="todayTable"></div>
+              <br />
+            </div>
+          </div>
+        </div>
+
+        <br /><br /><br />
+        <script src="stack.js"></script>
+
+        <script>
+          function displayBlock() {
+            document.getElementById("garrageHeading").style.display = "block";
+            document.getElementById("btn1").style.display = "block";
+            document.getElementById("btn2").style.display = "block";
+            document.getElementById("label").style.display = "block";
+          }
+          function displayNone() {
+            document.getElementById("garrageHeading").style.display = "none";
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("label").style.display = "none";
+          }
+        </script>
+        <script>
+          if (getStack().length == 0) {
+            displayNone();
+          }
+        </script>
+        <script>
+          function listUpdate() {
+            const todayTable = document.getElementById("todayTable");
+            todayTable.innerHTML = "";
+            console.log("list update has been called");
+            let stack = getStack();
+            for (let i = stack.length - 1; i >= 0; i--) {
+              const html = `<div class="todayCard card m-1 ${
+                i == stack.length - 1 ? "veryFirstTable" : ""
+              }" id="${stack[i].uniqueID}">
+  <div class="card-body d-flex justify-content-between align-items-center">
+    <!-- Table Name Section -->
+    <div class="d-flex flex-column">
+      <span class="font-weight-bold">${stack[i].tableName}</span>
+      <small class="text-muted">${stack[i].lastManipulation}</small>
+    </div>
+    
+    <!-- Trash Icon Section -->
+    <div class="d-flex justify-content-end align-items-center">
+      <i class="bi bi-trash trash-icon" onclick="deleteItem('${
+        stack[i].uniqueID
+      }')"></i>
+    </div>
+  </div>
+</div>
+`;
+
+              // Convert the HTML string into a DOM element
+              const tempElement = document.createElement("div");
+              tempElement.innerHTML = html;
+
+              // Get the actual card div
+              const cardElement = tempElement.firstChild;
+
+              // Make the card element draggable
+              cardElement.setAttribute("draggable", "true");
+
+              // Add drag event listeners
+              cardElement.addEventListener("dragstart", function (e) {
+                e.target.classList.add("dragging"); // Mark the dragged element
+              });
+
+              cardElement.addEventListener("dragend", function (e) {
+                e.target.classList.remove("dragging"); // Clean up after dragging ends
+              });
+
+              // Append the card element to the table
+              todayTable.appendChild(cardElement);
+
+              // Trigger the animation after the card is appended
+              setTimeout(() => {
+                cardElement.classList.add("animateIn"); // Add animation class after a slight delay
+              }, 50); // Small delay to ensure append is processed before animation starts
+            }
+          }
+
+          // Smooth scroll function
+          function smoothScroll() {
+            scrollTimer = requestAnimationFrame(function () {
+              window.scrollBy(0, scrollSpeed);
+              smoothScroll();
+            });
+          }
+
+          // Track the mouse position and handle the scroll
+          document.addEventListener("dragover", function (e) {
+            e.preventDefault(); // Allow the drag operation
+
+            const dragThreshold = 100; // Pixels from the top or bottom of the page
+            const scrollSpeed = 15; // Scroll speed in pixels
+
+            // Check if the mouse is near the top of the screen
+            if (e.clientY < dragThreshold) {
+              window.scrollBy(0, -scrollSpeed); // Scroll the page upwards
+            }
+            // Check if the mouse is near the bottom of the screen
+            else if (e.clientY > window.innerHeight - dragThreshold) {
+              window.scrollBy(0, scrollSpeed); // Scroll the page downwards
+            }
+
+            // Handle smooth scrolling if the mouse is near the top/bottom
+            if (
+              e.clientY < dragThreshold ||
+              e.clientY > window.innerHeight - dragThreshold
+            ) {
+              smoothScroll();
+            }
+          });
+
+          // Trigger the initial list update
+          listUpdate();
+        </script>
+        <script src="table.js"></script>
+        <script src="download.js"></script>
+        <script src="uniqueID.js"></script>
+
+        <!-- Save Table Once user do any Change in Workig  Area -->
+        <script>
+          // Detect when the user switches tabs (visibilitychange event)
+          document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+              saveTable();
+            }
+          });
+
+          // Detect when the user is about to refresh, close, or navigate away from the page (beforeunload event)
+          window.addEventListener("beforeunload", function (event) {
+            saveTable(); // Replace with your specific task
+          });
+        </script>
+        <!-- Save Table Once user do any Change in Workig  Area -->
+        <!-- Replace Table -->
+        <script>
+          const tableObject = peekLastFromStack();
+          if (tableObject) {
+            ReplaceTable(tableObject);
+          }
+        </script>
+        <!-- Replace Table -->
+
+        <script>
+          function deleteItem(uniqueID) {
+            popFromStack(uniqueID);
+            listUpdate();
+            if (document.getElementById("uniqueID").textContent === uniqueID) {
+              let stack = getStack();
+              if (stack.length > 0) {
+                ReplaceTable(stack[stack.length - 1]);
+                return;
+              }
+              const tableNameTag = document.getElementById("currTableName");
+              const uniqueIDTag = document.getElementById("uniqueID");
+              tableNameTag.innerText = null;
+              uniqueIDTag.textContent = null;
+              const table = document.getElementById("dynamicTable");
+              table.innerHTML = ""; // Clear any previous table
+              displayNone();
+            }
+          }
+        </script>
+
+        <script>
+          // Set today's date in YYYY-MM-DD format
+          document.getElementById("currentDate").value = new Date()
+            .toISOString()
+            .split("T")[0];
+          const nextBtn = document.querySelector("#nextBtn");
+          const backBtn = document.querySelector("#backBtn");
+          const confirmBtn = document.querySelector("#confirmBtn");
+          const denyBtn = document.querySelector("#denyBtn");
+          const form = document.querySelector("#multiStepForm");
+
+          let stepMenuOne = document.querySelector(".formbold-step-menu1");
+          let stepMenuTwo = document.querySelector(".formbold-step-menu2");
+          let stepMenuThree = document.querySelector(".formbold-step-menu3");
+
+          let stepOne = document.querySelector(".formbold-form-step-1");
+          let stepTwo = document.querySelector(".formbold-form-step-2");
+          let stepThree = document.querySelector(".formbold-form-step-3");
+
+          nextBtn.addEventListener("click", () => {
+            if (stepMenuOne.classList.contains("active")) {
+              stepMenuOne.classList.remove("active");
+              stepMenuTwo.classList.add("active");
+              stepOne.classList.remove("active");
+              stepTwo.classList.add("active");
+              backBtn.classList.add("active");
+            } else if (stepMenuTwo.classList.contains("active")) {
+              stepMenuTwo.classList.remove("active");
+              stepMenuThree.classList.add("active");
+              stepTwo.classList.remove("active");
+              stepThree.classList.add("active");
+              nextBtn.textContent = "Submit";
+            }
+          });
+
+          backBtn.addEventListener("click", () => {
+            if (stepMenuTwo.classList.contains("active")) {
+              stepMenuTwo.classList.remove("active");
+              stepMenuOne.classList.add("active");
+              stepTwo.classList.remove("active");
+              stepOne.classList.add("active");
+            } else if (stepMenuThree.classList.contains("active")) {
+              stepMenuThree.classList.remove("active");
+              stepMenuTwo.classList.add("active");
+              stepThree.classList.remove("active");
+              stepTwo.classList.add("active");
+              nextBtn.textContent = "Next Step";
+            }
+          });
+
+          // Event listener for the confirm button
+          confirmBtn.addEventListener("click", () => {
+            // Log the values from the form
+            const tableNameInput = document.querySelector("#tableName");
+            const currentDateInput = document.querySelector("#currentDate");
+            const numRowsInput = document.querySelector("#numRows");
+            const numColsInput = document.querySelector("#numColumns");
+
+            const tableName = tableNameInput.value;
+            const currentDate = currentDateInput.value;
+            const numRows = numRowsInput.value;
+            const numCols = numColsInput.value;
+
+            if (numRows && numCols && tableName) {
+              let uniqueID = generateUniqueId();
+              try {
+                generateTable({ numRows, numCols, tableName, uniqueID });
+                saveTable();
+                listUpdate();
+
+                // Reset the form fields after table is generated
+                tableNameInput.value = "";
+                currentDateInput.value = "";
+                numRowsInput.value = "";
+                numColsInput.value = "";
+              } catch (error) {
+                console.error("Error generating table:", error);
+              }
+            } else {
+              console.error("Please fill in all fields.");
+            }
+          });
+
+          denyBtn.addEventListener("click", () => {
+            const tableNameInput = document.querySelector("#tableName");
+            const currentDateInput = document.querySelector("#currentDate");
+            const numRowsInput = document.querySelector("#numRows");
+            const numColsInput = document.querySelector("#numColumns");
+
+            const tableName = tableNameInput.value;
+            const currentDate = currentDateInput.value;
+            const numRows = numRowsInput.value;
+            const numCols = numColsInput.value;
+            // Reset the form fields after table is generated
+            tableNameInput.value = "";
+            currentDateInput.value = "";
+            numRowsInput.value = "";
+            numColsInput.value = "";
+          });
+        </script>
+
+        <script
+          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+          integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+          integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+          crossorigin="anonymous"
+        ></script>
+
+        <!-- Droping Script -->
+        <script>
+          const table = document.getElementById("dynamicTable");
+          table.addEventListener("dragover", function (e) {
+            e.preventDefault(); // Allow dropping by preventing the default behavior
+          });
+          table.addEventListener("drop", function (e) {
+            e.preventDefault();
+            let selectedTable = document.querySelector(".dragging"); // Use a class to identify the dragged element
+
+            let userConfirmed = true;
+            if (userConfirmed) {
+              const tableName = selectedTable.textContent;
+              const tableID = selectedTable.getAttribute("id");
+
+              ReplaceTable(shiftToEndOfStack(tableID));
+              document.getElementById("todayTable").innerHTML = "";
+              listUpdate();
+
+              selectedTable.classList.remove("dragging"); // Remove the dragging class after dropping
+            } else {
+              return;
+            }
+          });
+        </script>
+        <!-- Droping Script -->
+
+        <script>
+          document
+            .querySelector(".parent")
+            .addEventListener("change", function (event) {
+              saveTable();
+            });
+        </script>
+
+        <script>
+          const containerDB = document.getElementById("dbArea");
+          containerDB.addEventListener("dragover", function (e) {
+            e.preventDefault();
+          });
+
+          containerDB.addEventListener("drop", function (e) {
+            e.preventDefault();
+            let selectedTable = document.querySelector(".dragging"); // Use a class to identify the dragged element
+            const tableID = selectedTable.getAttribute("id");
+            const tableObject = getFromStack(tableID);
+
+            sendPostRequest(tableObject, selectedTable);
+          });
+        </script>
+
+        <script>
+          const todayTable = document.getElementById("todayTable");
+
+          todayTable.addEventListener("dragover", function (e) {
+            e.preventDefault();
+          });
+
+          todayTable.addEventListener("drop", function (e) {
+            e.preventDefault();
+            const selectedTable = document.querySelector(".dragging");
+            const dropTarget = e.target;
+
+            // Check if the drop target is not the same as the dragged element or one of its children
+            if (
+              selectedTable !== dropTarget &&
+              !todayTable.contains(dropTarget)
+            ) {
+              console.log("hey, I am in perfect working order");
+              console.log(selectedTable);
+            } else {
+              console.log("Cannot drop on the same element or child element");
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>
